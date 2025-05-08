@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Custom Tabs</title>
+  <style>
+    /* === Outer Layout === */
+    .custom-tabs-container {
+      display: flex;
+      gap: 32px;
+      margin: 0px 70px;
+      background-color: #ffffff;
+    }
+
+    /* === Left Panel === */
+    .custom-tabs-left {
+        width: 25%;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      background-color: #f7f7f7;
+      padding: 30px;
+      border-bottom-left-radius: 20px;
+    }
+
+    .custom-tab-item {
+      background-color: #f7f7f7;
+      border: 1px solid #E3E3E3;
+      border-radius: 12px;
+      padding: 20px;
+      box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.06);
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .custom-tab-item strong {
+      font-weight: 700;
+      display: block;
+      margin-bottom: 6px;
+      color: #111;
+      font-size: 20px;
+      line-height: 24px;
+      letter-spacing: 1%;
+    }
+
+    .custom-tab-item span {
+      font-size: 14px;
+      line-height: 20px;
+      color: #555;
+    }
+
+    .custom-tab-item.active {
+      background: linear-gradient(90deg, #079CEF 0%, #025B8C 100%);
+      color: #fff;
+      box-shadow: none;
+    }
+
+    .custom-tab-item.active strong,
+    .custom-tab-item.active span {
+      color: #fff;
+    }
+
+    /* === Right Panel === */
+    .custom-tabs-right {
+      flex: 1;
+      background-color: #ffffff;
+      padding: 24px 0;
+    }
+
+    .custom-right-title {
+      color: #007cf0;
+      text-transform: uppercase;
+      font-weight: 400;
+      font-size: 14px;
+      margin-bottom: 24px;
+    }
+
+    .custom-tab-panel {
+      display: none;
+    }
+
+    .custom-tab-panel.active {
+      display: block;
+    }
+
+    .custom-right-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px 32px;
+    }
+
+    .custom-right-item {
+      display: flex;
+      align-items: center;
+    }
+
+    .custom-right-item a {
+      text-decoration: none;
+      background: none;
+      border: none;
+      border-radius: 0;
+      padding: 8px 0;
+      letter-spacing: 1px;
+      font-weight: 500;
+      line-height: 20px;
+      font-size: 16px;
+      color: #1a1a1a;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      transition: all 0.3s ease;
+      position: relative;
+    }
+
+    .custom-right-item a::before {
+        content: "↗";
+    font-size: 17px;
+    color: #ffffff;
+    background: black;
+    padding: 4px 6px;
+    border-radius: 10px;
+    transition: all 0.3s ease;
+    }
+
+    .custom-right-item a:hover {
+      color: #007cf0;
+      padding: 6px 20px;
+      box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.15);
+      border-bottom: 1px solid blue;
+      border-end-start-radius: 5px;
+      border-start-end-radius: 5px;
+    }
+
+    .custom-right-item a:hover::before {
+      content: "➜";
+      background-color: #007cf0;
+      color: white;
+      border-radius: 10px;
+      padding: 4px 6px;
+      font-size: 17px;
+    }
+
+    .custom-right-item.important a {
+      font-weight: 700;
+      color: #111;
+    }
+    .custom-right-item.important a:hover{
+      font-weight: 700;
+      color: #007cf0;
+    }
+/* Required for animation container */
+.custom-tabs-right {
+  position: relative;
+  min-height: 400px; /* prevents jumpy layout during fade */
+}
+
+/* Base styles for all panels */
+.custom-tab-panel {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(20px);
+  transition: all 0.5s ease-in-out;
+  z-index: 0;
+}
+
+/* When active, fade and slide in */
+.custom-tab-panel.active {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+  z-index: 1;
+  margin-top: 70px;
+}
+.custom-right-grid {
+  animation: fadeSlideIn 0.4s ease-in-out both;
+}
+
+@keyframes fadeSlideIn {
+  0% {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
+  </style>
+</head>
+<body>
+
+  <div class="custom-tabs-container">
+    <div class="custom-tabs-left">
+      <div class="custom-tab-item active" data-tab="software" data-title="DRIVING DIGITAL GROWTH">
+        <strong>Software Development</strong>
+        <span>Top-tier software solutions to modernize, optimize, and scale your digital operations.</span>
+      </div>
+      <div class="custom-tab-item" data-tab="ai" data-title="EMPOWERING INNOVATION">
+        <strong>AI Development</strong>
+        <span>Top-tier software solutions to modernize, optimize, and scale your digital operations.</span>
+      </div>
+      <div class="custom-tab-item" data-tab="industries" data-title="INDUSTRY-FOCUSED SOLUTIONS">
+        <strong>Industries</strong>
+        <span>Top-tier software solutions to modernize, optimize, and scale your digital operations.</span>
+      </div>
+    </div>
+
+    <div class="custom-tabs-right style="position: relative; min-height: 400px;">
+      <div class="custom-right-title" id="custom-tab-title">DRIVING DIGITAL GROWTH</div>
+
+      <!-- SOFTWARE -->
+      <div class="custom-tab-panel active" data-content="software">
+        <div class="custom-right-grid">
+          <div class="custom-right-item important"><a href="#">CRM Solutions</a></div>
+          <div class="custom-right-item "><a href="#">ERP Systems</a></div>
+          <div class="custom-right-item "><a href="#">Custom Web Apps</a></div>
+
+          <div class="custom-right-item important"><a href="#">Legacy Modernization</a></div>
+          <div class="custom-right-item"><a href="#">SaaS Development</a></div>
+          <div class="custom-right-item"><a href="#">API Integrations</a></div>
+
+          <div class="custom-right-item important"><a href="#">Frontend Engineering</a></div>
+          <div class="custom-right-item"><a href="#">Backend Engineering</a></div>
+          <div class="custom-right-item"><a href="#">Cloud Engineering</a></div>
+        </div>
+      </div>
+
+      <!-- AI -->
+      <div class="custom-tab-panel" data-content="ai">
+        <div class="custom-right-grid">
+          <div class="custom-right-item important"><a href="#">GenAI Development</a></div>
+          <div class="custom-right-item "><a href="#">GenAI Consulting</a></div>
+          <div class="custom-right-item "><a href="#">AI Development</a></div>
+          <div class="custom-right-item important"><a href="#">AI Agent Development</a></div>
+          <div class="custom-right-item "><a href="#">AI Automation Services</a></div>
+
+          <div class="custom-right-item "><a href="#">AI Data Annotation</a></div>
+          <div class="custom-right-item important"><a href="#">AI Consulting Company</a></div>
+          <div class="custom-right-item"><a href="#">AI Chatbot Development</a></div>
+          <div class="custom-right-item"><a href="#">Predictive Analytics Development</a></div>
+          <div class="custom-right-item important"><a href="#">LLMs Development</a></div>
+
+          <div class="custom-right-item "><a href="#">Computer Vision Development</a></div>
+          <div class="custom-right-item"><a href="#">NLP Development Services</a></div>
+          <div class="custom-right-item important"><a href="#">GeneAI Integration</a></div>
+          <div class="custom-right-item"><a href="#">ChatGPT Integration</a></div>
+          <div class="custom-right-item"><a href="#">Mistral AI Integration</a></div>
+          <div class="custom-right-item important"><a href="#">Llama Integration</a></div>
+        </div>
+      </div>
+
+      <!-- INDUSTRIES -->
+      <div class="custom-tab-panel" data-content="industries">
+        <div class="custom-right-grid">
+          <div class="custom-right-item important"><a href="#">Healthcare Solutions</a></div>
+          <div class="custom-right-item "><a href="#">Fintech Platforms</a></div>
+          <div class="custom-right-item "><a href="#">Retail Automation</a></div>
+
+          <div class="custom-right-item important"><a href="#">EdTech Tools</a></div>
+          <div class="custom-right-item"><a href="#">eCommerce Systems</a></div>
+          <div class="custom-right-item"><a href="#">Logistics Software</a></div>
+
+          <div class="custom-right-item important"><a href="#">Travel Portals</a></div>
+          <div class="custom-right-item"><a href="#">Real Estate CRMs</a></div>
+          <div class="custom-right-item"><a href="#">Manufacturing Systems</a></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const tabItems = document.querySelectorAll('.custom-tab-item');
+    const tabPanels = document.querySelectorAll('.custom-tab-panel');
+    const tabTitle = document.getElementById('custom-tab-title');
+
+    tabItems.forEach(tab => {
+      tab.addEventListener('mouseenter', () => {
+        tabItems.forEach(t => t.classList.remove('active'));
+        tab.classList.add('active');
+
+        const selected = tab.getAttribute('data-tab');
+        tabPanels.forEach(panel => {
+          panel.classList.toggle('active', panel.getAttribute('data-content') === selected);
+        });
+
+        tabTitle.textContent = tab.getAttribute('data-title');
+      });
+    });
+  </script>
+</body>
+</html>

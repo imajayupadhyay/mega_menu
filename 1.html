@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+ /* === Outer Layout === */
+.custom-tabs-container {
+  display: flex;
+  gap: 32px;
+  margin: 0px 70px;
+  background-color: #ffffff;
+}
+
+/* === Left Panel === */
+.custom-tabs-left {
+  width: 360px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  background-color: #f7f7f7;
+  padding: 30px;
+  border-bottom-left-radius: 20px;
+}
+
+.custom-tab-item {
+  background-color: #f7f7f7;
+  border: 1px solid #E3E3E3;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.06);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.custom-tab-item strong {
+  font-weight: 700;
+  display: block;
+  margin-bottom: 6px;
+  color: #111;
+font-size: 20px;
+line-height: 24px;
+letter-spacing: 1%;
+
+}
+
+.custom-tab-item span {
+  font-size: 14px;
+  line-height: 20px;
+  color: #555;
+}
+
+.custom-tab-item.active {
+  background: linear-gradient(90deg, #079CEF 0%, #025B8C 100%);
+  color: #fff;
+  box-shadow: none;
+}
+
+.custom-tab-item.active strong,
+.custom-tab-item.active span {
+  color: #fff;
+}
+
+/* === Right Panel === */
+.custom-tabs-right {
+  flex: 1;
+  background-color: #ffffff;
+  padding: 24px 0;
+}
+
+/* Right Title */
+.custom-right-title {
+  color: #007cf0;
+  text-transform: uppercase;
+  font-weight: 600;
+  font-size: 14px;
+  margin-bottom: 24px;
+}
+
+/* Panel Visibility */
+.custom-tab-panel {
+  display: none;
+}
+
+.custom-tab-panel.active {
+  display: block;
+}
+
+/* Grid of Items */
+.custom-right-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 12px 32px;
+}
+
+/* Item Style */
+.custom-right-item {
+  background: none;
+  border: none;
+  border-radius: 0;
+  padding: 8px 0;
+  font-weight: 600;
+  line-height: 20px;
+  font-size: 16px;
+  color: #1a1a1a;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  transition: all 0.3s ease;
+}
+.custom-right-item a{
+  text-decoration: none;
+  background: none;
+  border: none;
+  border-radius: 0;
+  padding: 8px 0;
+  font-weight: 600;
+  line-height: 20px;
+  font-size: 16px;
+  color: #1a1a1a;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  transition: all 0.3s ease;
+}
+/* Arrow Default */
+.custom-right-item::before {
+  content: "↗";
+    font-size: 17px;
+    color: #ffffff;
+    display: inline-block;
+    background: black;
+    padding: 3px 5px;
+    border-radius: 100px;
+}
+
+/* Hover = same as active */
+.custom-right-item:hover {
+  color: #007cf0;
+}
+
+.custom-right-item:hover::before {
+  color: #007cf0;
+}
+
+/* Active Item */
+.custom-right-item.active {
+  color: #007cf0;
+  font-weight: 600;
+}
+
+.custom-right-item.active::before {
+  content: "➜";
+  background-color: #007cf0;
+  color: white;
+  font-size: 12px;
+  border-radius: 50%;
+  padding: 2px 6px;
+  line-height: 1;
+}
+
+
+    </style>
+</head>
+<body>
+
+    <div class="custom-tabs-container">
+        <div class="custom-tabs-left">
+          <div class="custom-tab-item active" data-tab="software" data-title="DRIVING DIGITAL GROWTH">
+            <strong>Software Development</strong>
+            <span>Top-tier software solutions to modernize, optimize, and scale your digital operations.</span>
+          </div>
+          <div class="custom-tab-item" data-tab="ai" data-title="EMPOWERING AI TRANSFORMATION">
+            <strong>AI Development</strong>
+            <span>Top-tier software solutions to modernize, optimize, and scale your digital operations.</span>
+          </div>
+          <div class="custom-tab-item" data-tab="industries" data-title="INDUSTRY-FOCUSED SOLUTIONS">
+            <strong>Industries</strong>
+            <span>Top-tier software solutions to modernize, optimize, and scale your digital operations.</span>
+          </div>
+        </div>
+      
+        <div class="custom-tabs-right">
+          <div class="custom-right-title" id="custom-tab-title">DRIVING DIGITAL GROWTH</div>
+      
+          <!-- Tab Panels -->
+          <div class="custom-tab-panel active" data-content="software">
+            <div class="custom-right-grid">
+              <div class="custom-right-item">
+                <a href="#"> CRM Solutions</a>
+               </div>
+              <div class="custom-right-item">ERP Systems</div>
+              <div class="custom-right-item">Custom Web Apps</div>
+            </div>
+          </div>
+      
+          <div class="custom-tab-panel" data-content="ai">
+            <div class="custom-right-grid">
+              <div class="custom-right-item">GenAI Development</div>
+              <div class="custom-right-item">AI Chatbot Development</div>
+              <div class="custom-right-item">LLM Integration</div>
+            </div>
+          </div>
+      
+          <div class="custom-tab-panel" data-content="industries">
+            <div class="custom-right-grid">
+              <div class="custom-right-item">Healthcare Solutions</div>
+              <div class="custom-right-item">Fintech Platforms</div>
+              <div class="custom-right-item">Retail Automation</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      
+    <script>
+ const tabItems = document.querySelectorAll('.custom-tab-item');
+const tabPanels = document.querySelectorAll('.custom-tab-panel');
+const tabTitle = document.getElementById('custom-tab-title');
+
+tabItems.forEach(tab => {
+  tab.addEventListener('click', () => {
+    // Switch active tab
+    tabItems.forEach(t => t.classList.remove('active'));
+    tab.classList.add('active');
+
+    // Show corresponding content panel
+    const selected = tab.getAttribute('data-tab');
+    tabPanels.forEach(panel => {
+      panel.classList.toggle('active', panel.getAttribute('data-content') === selected);
+    });
+
+    // Update dynamic title
+    const newTitle = tab.getAttribute('data-title');
+    tabTitle.textContent = newTitle;
+  });
+});
+
+    </script>
+</body>
+</html>
